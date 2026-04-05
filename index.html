@@ -3,89 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Toolbox</title>
+    <title>IT Admin Toolbox</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
-            max-width: 600px;
+            max-width: 750px;
             margin: 40px auto;
             padding: 0 20px;
-            background-color: #f9f9f9;
+            background-color: #f4f7f9;
         }
-        h1 {
-            color: #333;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 10px;
+        h1, h2 { color: #333; border-bottom: 2px solid #dee2e6; padding-bottom: 10px; }
+        
+        /* Layout */
+        .section { background: white; margin-bottom: 30px; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        /* Software List */
+        .software-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .software-item:last-child { border-bottom: none; }
+        .download-btn { background: #007bff; color: white; text-decoration: none; padding: 6px 14px; border-radius: 6px; font-size: 0.9em; }
+
+        /* WinGet Section */
+        .terminal-box {
+            background: #2d3436; color: #fab1a0; padding: 15px; border-radius: 8px; 
+            font-family: 'Consolas', monospace; font-size: 0.95em; position: relative;
+            margin: 15px 0; overflow-x: auto; white-space: nowrap;
         }
-        .software-list {
-            list-style: none;
-            padding: 0;
+        .copy-tag { 
+            position: absolute; right: 10px; top: 10px; background: #636e72; 
+            color: white; padding: 2px 8px; border-radius: 4px; font-size: 10px; cursor: pointer;
         }
-        .software-item {
-            background: white;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        /* Password Gen */
+        .pg-container { display: flex; flex-direction: column; gap: 15px; }
+        .input-group { display: flex; flex-direction: column; gap: 5px; }
+        input[type="text"] { padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: monospace; }
+        .result-box { 
+            background: #e9ecef; padding: 15px; border-radius: 6px; font-family: monospace;
+            font-weight: bold; font-size: 1.2em; text-align: center; word-break: break-all; min-height: 1.5em;
         }
-        .software-name {
-            font-weight: bold;
-            font-size: 1.1em;
-            color: #444;
-        }
-        .download-btn {
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            transition: background 0.2s;
-        }
-        .download-btn:hover {
-            background-color: #0056b3;
-        }
+        .btn-group { display: flex; gap: 10px; }
+        .primary-btn { background: #28a745; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; flex: 2; font-weight: bold; }
+        .secondary-btn { background: #6c757d; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; flex: 1; }
     </style>
 </head>
 <body>
 
-    <h1>Software Toolbox</h1>
-    <p>Direct download links for essential applications.</p>
+    <div class="section">
+        <h2>Quick Install Firefox via WinGet</h2>
+        <p>Run the following command in Terminal:</p>
+        <div class="terminal-box">
+            <span class="copy-tag" onclick="copyText('winget install Mozilla.Firefox.zh-TW')">COPY</span>
+            <code>winget install Mozilla.Firefox.zh-TW</code>
+        </div>
 
-    <ul class="software-list">
-        <li class="software-item">
-            <span class="software-name">Firefox Browser</span>
-            <a href="https://download.mozilla.org/?product=firefox-latest&os=win&lang=zh-TW" class="download-btn">Download EXE</a>
-        </li>
-        <li class="software-item">
-            <span class="software-name">Telegram Desktop</span>
-            <a href="https://telegram.org/dl/desktop/win64" class="download-btn">Download EXE</a>
-        </li>
-        <li class="software-item">
-            <span class="software-name">Discord</span>
-            <a href="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64" class="download-btn">Download EXE</a>
-        </li>
-        <li class="software-item">
-            <span class="software-name">Spotify</span>
-            <a href="https://download.scdn.co/SpotifySetup.exe" class="download-btn">Download EXE</a>
-        </li>
-        <li class="software-item">
-            <span class="software-name">Steam</span>
-            <a href="https://cdn.fastly.steamstatic.com/client/installer/SteamSetup.exe" class="download-btn">Download EXE</a>
-        </li>
-        <li class="software-item">
-            <span class="software-name">LINE</span>
-            <a href="https://desktop.line-scdn.net/win/new/LineInst.exe" class="download-btn">Download EXE</a>
-        </li>
-    </ul>
+    </div>
 
-    <footer style="margin-top: 40px; font-size: 0.8em; color: #888; text-align: center;">
-        <p>Managed via GitHub Pages</p>
-    </footer>
+    <div class="section">
+        <h2>Software Toolbox</h2>
+        <div class="software-item"><span>Telegram Desktop</span><a href="https://telegram.org/dl/desktop/win64" class="download-btn">Download</a></div>
+        <div class="software-item"><span>Discord</span><a href="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64" class="download-btn">Download</a></div>
+        <div class="software-item"><span>Spotify</span><a href="https://download.scdn.co/SpotifySetup.exe" class="download-btn">Download</a></div>
+        <div class="software-item"><span>Steam</span><a href="https://cdn.fastly.steamstatic.com/client/installer/SteamSetup.exe" class="download-btn">Download</a></div>
+        <div class="software-item"><span>LINE</span><a href="https://desktop.line-scdn.net/win/new/LineInst.exe" class="download-btn">Download</a></div>
+    </div>
+
+    <div class="section">
+        <h2>Secure Password Generator</h2>
+        <div class="pg-container">
+            <div class="input-group">
+                <label for="length-slider">Password Length: <span id="length-val">16</span></label>
+                <input type="range" id="length-slider" min="8" max="64" value="16" oninput="document.getElementById('length-val').innerText = this.value">
+            </div>
+            <div class="input-group">
+                <label for="specials">Allowed Special Characters:</label>
+                <input type="text" id="specials" value="!@#$%^&*()_+-=[]{}|;:,.<>?">
+            </div>
+            <div class="result-box" id="password-display">Click Generate</div>
+            <div class="btn-group">
+                <button class="primary-btn" onclick="generatePassword()">Generate Password</button>
+                <button class="secondary-btn" onclick="copyResult()">Copy Result</button>
+            </div>
+            <small style="color: #666;">* Rule: At least 1 [A-Z], [a-z], [0-9], and [Special] in first 8 chars.</small>
+        </div>
+    </div>
+
+    <script>
+        // WinGet Copy function
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("Command copied!");
+        }
+
+        // Password Generator Logic
+        function generatePassword() {
+            const length = document.getElementById('length-slider').value;
+            const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const numbers = "0123456789";
+            const specials = document.getElementById('specials').value || "!@#$%^&*";
+            const allChars = upper + lower + numbers + specials;
+
+            let password = [];
+            password.push(upper[Math.floor(Math.random() * upper.length)]);
+            password.push(lower[Math.floor(Math.random() * lower.length)]);
+            password.push(numbers[Math.floor(Math.random() * numbers.length)]);
+            password.push(specials[Math.floor(Math.random() * specials.length)]);
+
+            for (let i = 0; i < 4; i++) {
+                password.push(allChars[Math.floor(Math.random() * allChars.length)]);
+            }
+
+            for (let i = 7; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [password[i], password[j]] = [password[j], password[i]];
+            }
+
+            for (let i = 0; i < (length - 8); i++) {
+                password.push(allChars[Math.floor(Math.random() * allChars.length)]);
+            }
+
+            document.getElementById('password-display').innerText = password.join('');
+        }
+
+        function copyResult() {
+            const pass = document.getElementById('password-display').innerText;
+            if (pass === "Click Generate") return;
+            navigator.clipboard.writeText(pass);
+            alert("Password copied!");
+        }
+    </script>
 
 </body>
 </html>
