@@ -78,7 +78,7 @@
             </div>
             <div class="input-group">
                 <label for="specials">Allowed Special Characters:</label>
-                <input type="text" id="specials" value="!@#$%^&*()_+-=[]{}|;:,.<>?">
+                <input type="text" id="specials" placeholder="$&!%#^?()-_={}[]\/">
             </div>
             <div class="result-box" id="password-display">Click Generate</div>
             <div class="btn-group">
@@ -102,7 +102,7 @@
             const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const lower = "abcdefghijklmnopqrstuvwxyz";
             const numbers = "0123456789";
-            const specials = document.getElementById('specials').value || "!@#$%^&*";
+            const specials = document.getElementById('specials').value || "$&!%#^?()-_={}[]\/";
             const allChars = upper + lower + numbers + specials;
 
             let password = [];
