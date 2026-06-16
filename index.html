@@ -96,6 +96,13 @@
             alert("Command copied!");
         }
 
+        function getSecureRandomElement(source) {
+            const array = new Uint32Array(1);
+            window.crypto.getRandomValues(array);
+            const randomIndex = array[0] % source.length;
+            return source[randomIndex];
+        }
+
         // Password Generator Logic
         function generatePassword() {
             const length = document.getElementById('length-slider').value;
@@ -106,22 +113,24 @@
             const allChars = upper + lower + numbers + specials;
 
             let password = [];
-            password.push(upper[Math.floor(Math.random() * upper.length)]);
-            password.push(lower[Math.floor(Math.random() * lower.length)]);
-            password.push(numbers[Math.floor(Math.random() * numbers.length)]);
-            password.push(specials[Math.floor(Math.random() * specials.length)]);
+            password.push(getSecureRandomElement(upper));
+            password.push(getSecureRandomElement(lower));
+            password.push(getSecureRandomElement(numbers));
+            password.push(getSecureRandomElement(specials));
 
             for (let i = 0; i < 4; i++) {
-                password.push(allChars[Math.floor(Math.random() * allChars.length)]);
+                password.push(getSecureRandomElement(allChars));
             }
 
             for (let i = 7; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                const j = array[0] % (i + 1);
                 [password[i], password[j]] = [password[j], password[i]];
             }
 
             for (let i = 0; i < (length - 8); i++) {
-                password.push(allChars[Math.floor(Math.random() * allChars.length)]);
+                password.push(getSecureRandomElement(allChars));
             }
 
             document.getElementById('password-display').innerText = password.join('');
