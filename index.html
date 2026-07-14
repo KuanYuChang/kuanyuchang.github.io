@@ -89,6 +89,21 @@
         </div>
     </div>
 
+    <div class="section">
+        <h2>URL Decoder</h2>
+        <div class="pg-container">
+            <div class="input-group">
+                <label for="url-input">Enter Encoded URL / Text:</label>
+                <input type="text" id="url-input" placeholder="Paste your encoded URL here... (e.g., https%3A%2F%2Fgoogle.com)">
+            </div>
+            <div class="result-box" id="url-display" style="font-size: 1em; text-align: left; background: #f8f9fa;">Result will appear here...</div>
+            <div class="btn-group">
+                <button class="primary-btn" onclick="decodeURL()">Decode URL</button>
+                <button class="secondary-btn" onclick="copyURLResult()">Copy Result</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // WinGet Copy function
         function copyText(text) {
@@ -141,6 +156,41 @@
             if (pass === "Click Generate") return;
             navigator.clipboard.writeText(pass);
             alert("Password copied!");
+        }
+
+        function decodeURL() {
+            const inputElement = document.getElementById('url-input');
+            const displayElement = document.getElementById('url-display');
+            const inputValue = inputElement.value.trim();
+
+            if (!inputValue) {
+                displayElement.innerText = "Please enter some text to decode.";
+                displayElement.style.color = "#6c757d";
+                return;
+            }
+
+            try {
+                const decodedValue = decodeURIComponent(inputValue);
+                displayElement.innerText = decodedValue;
+                displayElement.style.color = "#333"; // Normal color
+            } catch (error) {
+                displayElement.innerText = "Error: Invalid URL encoding sequence.";
+                displayElement.style.color = "#dc3545"; // show warning
+            }
+        }
+
+        function copyURLResult() {
+            const displayElement = document.getElementById('url-display');
+            const textToCopy = displayElement.innerText;
+            
+            if (textToCopy === "Result will appear here..." || 
+                textToCopy === "Please enter some text to decode." || 
+                textToCopy === "Error: Invalid URL encoding sequence.") {
+                return;
+            }
+            
+            navigator.clipboard.writeText(textToCopy);
+            alert("Decoded URL copied!");
         }
     </script>
 
